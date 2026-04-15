@@ -79,12 +79,11 @@ MYSQL_CONFIG="$brew_path/etc/my.cnf"
 BREW_PACKAGES_DIR="$brew_path/Cellar"
 
 # variables
-BREW_SERVICES="nginx redis mailhog mariadb"
+BREW_SERVICES="nginx redis mailpit mariadb"
 BREW_PACKAGES="bash-completion pkg-config composer imagemagick pv jpegoptim optipng phpunit nmap $BREW_SERVICES"
 PHP_EXTENSIONS="redis apcu xdebug imagick mcrypt"
 PHP_VERSIONS=${PHP_VERSIONS:="7.4"}
 PHPVERSION=${PHPVERSION:=7.4}
-IS_KUTEGO=${KUTEGO:=0}
 
 # methods
 EO=0
@@ -190,6 +189,12 @@ switch_php_version() {
 					fi
 			fi
 	done <"$WORKING_DIR/configs/php-ini-overrides.ini"
+}
+
+install_rosetta() {
+      if ! /usr/bin/pgrep oahd >/dev/null 2>&1; then
+          /usr/sbin/softwareupdate --install-rosetta --agree-to-license
+      fi
 }
 
 install_homebrew() {
@@ -334,6 +339,7 @@ install_packages() {
 
 # check packages
 echo -n "check packages... "
+install_rosetta
 install_homebrew
 install_packages
 dne
