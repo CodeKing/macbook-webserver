@@ -207,10 +207,13 @@ install_homebrew() {
 		arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" <$LOG_OUTPUT
 		$brew analytics off &>$LOG_OUTPUT
 		$brew tap shivammathur/php
+		$brew tap shivammathur/extensions
 		$brew tap kabel/php-ext
 		$brew update &>$LOG_OUTPUT && $brew upgrade &>$LOG_OUTPUT
 
 		dne
+
+		# check packages
 	fi
 }
 
@@ -227,7 +230,7 @@ install_packages() {
 		# install package
 		if ! is_installed "$package" && ! $brew ls --versions "$package" >$LOG_OUTPUT; then
 			i
-			echo -n -e "install ${GREEN}x86_64 ${CYAN}$package${NC}... "
+			echo -n -e "install ${GREEN}x86_64 $brew ${CYAN}$package${NC}... "
 			$brew install "$package" &>$LOG_OUTPUT
 			dne
 		fi
