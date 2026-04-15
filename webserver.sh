@@ -81,7 +81,7 @@ BREW_PACKAGES_DIR="$brew_path/Cellar"
 # variables
 BREW_SERVICES="nginx redis mailhog mariadb"
 BREW_PACKAGES="bash-completion pkg-config composer imagemagick pv jpegoptim optipng phpunit nmap $BREW_SERVICES"
-PHP_EXTENSIONS="redis apcu xdebug imagick mcrypt xmlrpc"
+PHP_EXTENSIONS="redis apcu xdebug imagick mcrypt"
 PHP_VERSIONS=${PHP_VERSIONS:="7.4"}
 PHPVERSION=${PHPVERSION:=7.4}
 IS_KUTEGO=${KUTEGO:=0}
